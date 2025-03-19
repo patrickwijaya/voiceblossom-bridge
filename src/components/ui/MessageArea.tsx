@@ -48,10 +48,10 @@ const MessageArea: React.FC = () => {
           Pilih simbol untuk menyusun pesan Anda...
         </div>
       ) : (
-        <div className="flex flex-wrap gap-2 bg-gray-50 rounded-lg p-3 border border-gray-100 min-h-[120px] max-h-[200px] overflow-y-auto">
+        <div className="flex flex-wrap gap-3 bg-gray-50 rounded-lg p-4 border border-gray-100 min-h-[150px] max-h-[250px] overflow-y-auto">
           {message.map((symbol, index) => (
             <div key={`${symbol.id}-${index}`} className="relative group">
-              <Symbol symbol={symbol} size="sm" />
+              <Symbol symbol={symbol} size="md" />
               <button
                 className="absolute -top-2 -right-2 bg-white rounded-full p-1 shadow-medium opacity-0 group-hover:opacity-100 transition-opacity"
                 onClick={() => removeSymbol(index)}

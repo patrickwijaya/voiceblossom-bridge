@@ -17,7 +17,7 @@ const Symbol: React.FC<SymbolProps> = ({
   size = 'md'
 }) => {
   const sizeClasses = {
-    sm: 'w-14 h-14 text-lg',
+    sm: 'w-16 h-16 text-lg',
     md: 'w-20 h-20 text-2xl',
     lg: 'w-24 h-24 text-3xl'
   };
