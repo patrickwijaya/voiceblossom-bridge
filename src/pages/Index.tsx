@@ -3,11 +3,13 @@ import React, { useState } from 'react';
 import CategoryBar from '@/components/CategoryBar';
 import SymbolGrid from '@/components/SymbolGrid';
 import MessageArea from '@/components/ui/MessageArea';
+import Settings from '@/components/ui/Settings';
 import { MessageProvider } from '@/context/MessageContext';
-import { Settings } from 'lucide-react';
+import { Settings as SettingsIcon } from 'lucide-react';
 
 const Index = () => {
   const [activeCategory, setActiveCategory] = useState('basics');
+  const [settingsOpen, setSettingsOpen] = useState(false);
 
   return (
     <MessageProvider>
@@ -18,8 +20,9 @@ const Index = () => {
           <button
             className="p-2 rounded-full text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors"
             aria-label="Settings"
+            onClick={() => setSettingsOpen(true)}
           >
-            <Settings size={20} />
+            <SettingsIcon size={20} />
           </button>
         </header>
         
@@ -38,7 +41,7 @@ const Index = () => {
             />
             
             {/* Symbol grid */}
-            <div className="bg-white rounded-b-xl overflow-y-auto max-h-[calc(100vh-320px)]">
+            <div className="bg-white rounded-b-xl overflow-y-auto max-h-[calc(100vh-360px)]">
               <SymbolGrid category={activeCategory} />
             </div>
           </div>
@@ -49,6 +52,9 @@ const Index = () => {
           Augmentative and Alternative Communication App
         </footer>
       </div>
+      
+      {/* Settings Sheet */}
+      <Settings open={settingsOpen} onOpenChange={setSettingsOpen} />
     </MessageProvider>
   );
 };

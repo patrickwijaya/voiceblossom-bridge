@@ -6,11 +6,15 @@ import { X, Trash2, Volume2 } from 'lucide-react';
 import speechService from '@/utils/speechUtils';
 
 const MessageArea: React.FC = () => {
-  const { message, removeSymbol, clearMessage, messageText } = useMessage();
+  const { message, removeSymbol, clearMessage, messageText, speechSettings } = useMessage();
   
   const handleSpeak = () => {
     if (messageText.trim()) {
-      speechService.speak(messageText);
+      speechService.speak(messageText, {
+        volume: speechSettings.volume,
+        rate: speechSettings.rate,
+        voiceId: speechSettings.voiceId
+      });
     }
   };
 
@@ -40,11 +44,11 @@ const MessageArea: React.FC = () => {
       </div>
       
       {message.length === 0 ? (
-        <div className="bg-gray-50 rounded-lg p-4 text-center text-gray-500 border border-gray-100">
+        <div className="bg-gray-50 rounded-lg p-4 text-center text-gray-500 border border-gray-100 min-h-[120px]">
           Pilih simbol untuk menyusun pesan Anda...
         </div>
       ) : (
-        <div className="flex flex-wrap gap-2 bg-gray-50 rounded-lg p-3 border border-gray-100 min-h-[80px]">
+        <div className="flex flex-wrap gap-2 bg-gray-50 rounded-lg p-3 border border-gray-100 min-h-[120px] max-h-[200px] overflow-y-auto">
           {message.map((symbol, index) => (
             <div key={`${symbol.id}-${index}`} className="relative group">
               <Symbol symbol={symbol} size="sm" />

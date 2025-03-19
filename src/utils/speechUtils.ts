@@ -4,6 +4,7 @@ interface SpeechOptions {
   pitch?: number;
   volume?: number;
   lang?: string;
+  voiceId?: string | null;
 }
 
 class SpeechService {
@@ -50,7 +51,7 @@ class SpeechService {
   }
 
   public getVoices(): SpeechSynthesisVoice[] {
-    return this.voices;
+    return this.synth.getVoices();
   }
 
   public speak(text: string, options: SpeechOptions = {}): void {
@@ -75,7 +76,12 @@ class SpeechService {
     // Set language and voice
     utterance.lang = mergedOptions.lang || 'id-ID';
     
-    if (this.defaultVoice) {
+    if (mergedOptions.voiceId) {
+      const selectedVoice = this.voices.find(voice => voice.voiceURI === mergedOptions.voiceId);
+      if (selectedVoice) {
+        utterance.voice = selectedVoice;
+      }
+    } else if (this.defaultVoice) {
       utterance.voice = this.defaultVoice;
     }
     
