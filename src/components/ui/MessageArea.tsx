@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useMessage } from '@/context/MessageContext';
 import Symbol from '@/components/Symbol';
@@ -10,7 +9,6 @@ const MessageArea: React.FC = () => {
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   
-  // Check speaking status periodically
   useEffect(() => {
     const interval = setInterval(() => {
       const speaking = speechService.isSpeakingNow();
@@ -152,7 +150,7 @@ const MessageArea: React.FC = () => {
           ) : (
             <>
               <Volume2 size={18} />
-              <span>Speak</span>
+              <span>Putar</span>
             </>
           )}
         </button>
